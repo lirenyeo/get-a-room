@@ -1,4 +1,6 @@
 class UsersController < Clearance::UsersController
+
+	before_action :get_user, only: [:show, :edit]
 	
 	def new
 	    @user = User.new
@@ -23,6 +25,17 @@ class UsersController < Clearance::UsersController
 
 	def user_params
 		params.require(:user).permit(:email, :first_name, :last_name, :gender, :phone, :country, :birthdate, :password, :password_confirmation)
+	end
+
+	def show
+	end
+
+	def edit
+	end
+
+	private
+	def get_user
+		@user = User.find(params[:id])
 	end
 
 end

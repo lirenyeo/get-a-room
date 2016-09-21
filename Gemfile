@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # * * * * * * * * * * * * * ** * * * * * * 
 
 gem 'clearance'
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # * * * * * * * * * * * * * ** * * * * * *
 
