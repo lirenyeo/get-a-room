@@ -1,0 +1,19 @@
+<h1> Edit User Profile </h1>
+
+  <%= form_for @user do |form| %>
+    <%= render partial: '/users/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+   <% end %>
+
+   <%= form_for @user, html: { multipart: true } do |f| %>
+  <p>
+    <label>My Avatar</label>
+    <%= image_tag(@user.avatar_url) if @user.avatar? %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+    <%= f.submit %>
+  </p>
+<% end %>

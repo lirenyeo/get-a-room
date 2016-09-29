@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
+# Use bootstrap
+gem 'bootstrap-sass', '~> 3.3.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -31,6 +33,24 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# * * * * * * * * * * * * * ** * * * * * * 
+
+gem 'bootswatch-rails'
+gem 'clearance'
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'faker'
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'mini_magick'
+gem 'bootstrap-datepicker-rails'
+gem 'validates_overlap'
+gem 'searchkick'
+
+gem 'jquery-ui-rails'
+
+# * * * * * * * * * * * * * ** * * * * * *
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
