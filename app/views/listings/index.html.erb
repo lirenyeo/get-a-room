@@ -1,0 +1,33 @@
+<%= form_for Listing.new, method: :get, url: search_path, :html => {:class => "navbar-form navbar-left" } do |f| %>
+        
+        Maximum Price: $ <text id="price-tag">100</text>
+		<%= f.range_field :price, :min=>10, :max=>800, :class=>"slide", :id=>"slider1"%>
+
+        <div class='form-group'>
+          <%= f.text_field_tag :name, params[:name], placeholder:"Name" %>
+        </div>
+        <br>
+
+        <div class='form-group'>
+          <%= f.text_field_tag :country, params[:country], placeholder:"Country" %>
+        </div>
+        <br>
+
+        
+        <%= f.submit 'search', class: 'btn btn-default' %>
+  
+<% end %>
+
+<br><br><br><br><br><br><br><br><br>
+
+<% i = 1 %>
+<% @listings.each do |l| %>
+<br>
+<a href="listings/<%= l.id %>">
+<span> <%= i %> </span>
+<span> <%= l.name %> </span>
+<span> <%= l.country %> </span>
+</a>
+
+<% i += 1 %>
+<% end %>

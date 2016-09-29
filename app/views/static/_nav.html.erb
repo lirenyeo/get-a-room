@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="room-logo">
+      <a class="navbar-brand" href="/"><%= image_tag("room-logo.png", size: "50") %></a>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">About</a></li>
+        <li>          
+          <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a>
+        </li>
+        
+        <li>          
+          <a href="/listings"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</a>
+        </li>
+      </ul>
+
+      <%= form_for Listing.new, method: :get, url: search_path, :html => {:class => "navbar-form navbar-left" } do |f| %>
+        
+        <div class='form-group'>
+          <%= f.text_field_tag :term, params[:term], placeholder:"Quick Search" %>
+        </div>
+        
+        <%= f.submit 'search', class: 'btn btn-default' %>
+  
+      <% end %>
+
+
+      <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">          <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Help <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <% unless signed_in? %>
+        <li><%= link_to t(".sign_in"), sign_in_path, class: "btn btn-default" %></li>
+        <li><%= link_to t(".sign_up"), sign_up_path, class: "btn btn-default" %></li>
+        <% else %>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <%= current_user.email %><span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Your Listings</a></li>
+            <li><a href="/users/<%= current_user.id %>">View Profile</a></li>
+            <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
+            <li class="divider"></li>
+            <li><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

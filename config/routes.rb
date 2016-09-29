@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   
   root 'static#home'
+  get '/search', to: 'listings#search'
 
-  resources :listings
+  resources :listings do
+    resources :reservations, only: [:create]
+  end
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
   # resources :users, only: [:show, :edit, :update, :destroy] 
   resources :users, only: [:create, :show, :edit, :update, :destroy] do
+    resource :reservations, only: [:show]
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
@@ -19,7 +24,14 @@ Rails.application.routes.draw do
   
   get "/auth/:provider/callback" => "sessions#create_from_omniauth", as: "fb_auth"
 
-  get 'auth/failure' => redirect('/')
+  # get '/auth/failure' => redirect('/')
+
+
+
+
+
+
+
 
   # redirect everything else to root
   # constraints is really not needed here, just leave it for reference

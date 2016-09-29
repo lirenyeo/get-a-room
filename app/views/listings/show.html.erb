@@ -1,0 +1,28 @@
+<center>
+
+<h2><%= @listing.name %></h2>
+
+
+<%= form_for [@listing, @listing.reservations.new] do |f| %>
+	
+	<p>Start Date:</p>
+	<%= f.text_field :start_date, id: 'start-date', class: 'datepicker' %> 
+	<br>
+	<br>
+	<p>End Date:</p>
+	<%= f.text_field :end_date, id: 'end-date', class: 'datepicker' %>
+	<br>
+	<br>
+	<p>Guest Number:</p>
+	<%= f.number_field :guest_number, in: 1.0..@listing.guest_number, step: 1 %>
+
+	<br><br>
+	
+	Total Price: <span id="total-price" data-price="<%= @listing.price %>">$0</span>
+
+	<br><br>
+	<%= f.submit "Book Now", class: "btn btn-danger" %>
+<% end %>
+
+	
+</center>

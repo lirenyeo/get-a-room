@@ -4,10 +4,11 @@ class UsersController < Clearance::UsersController
 	
 	def new
 	    @user = User.new
-	    render layout: false
+	    # render layout: false
 	end
 
 	def create
+		byebug
 	    @user = user_from_params
 
     	if @user.save
@@ -24,7 +25,7 @@ class UsersController < Clearance::UsersController
 	end
 
 	def user_params
-		params.require(:user).permit(:email, :first_name, :last_name, :gender, :phone, :country, :birthdate, :password, :password_confirmation)
+		params.require(:user).permit(:email, :first_name, :last_name, :gender, :phone, :country, :birthdate, :password, :password_confirmation, {avatars: []})
 	end
 
 	def show

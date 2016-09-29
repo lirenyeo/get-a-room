@@ -1,11 +1,12 @@
-<h1> Sign In Page </h1>
-<div id="clearance" class="sign-in">
-  <h2><%= t(".title") %></h2>
+<div id="clearance" class="sign-in", id="sign-in-div">
 
-  <%= render partial: '/sessions/form' %>
+	<%= render partial: '/sessions/form' %>
+
+	<div class="other-links">
+    	<%= link_to t(".forgot_password"), new_password_path %>
+    	<br>
+    	<%= link_to "Sign in with Facebook", 'auth/facebook' %>
+  	</div>
 
 </div>
 
-<div id="fb-sign-in">
-<%= link_to "Sign in with Facebook", 'auth/facebook' %>
-</div>
